@@ -1,27 +1,8 @@
 version: 2.1
-orbs:
-  node: circleci/node@4.1.0
-  aws-cli: circleci/aws@1.3.1
 jobs:
   build:
     docker:
-      - image: "cimg/base:stable"
+      - image: cimg/node:17.2.0 # the primary container, where your job's commands are run
     steps:
-      - node/install
-      - checkout
-      - run:
-          name: Front-End Install
-          command: |
-            npm run frontend:install
-      - run:
-          name: Back-End Install
-          command: |
-            npm run backend:install
-      - run:
-          name: Front-End Build
-          command: |
-            npm run frontend:build
-      - run:
-          name: Back-End Build
-          command: |
-            npm run backend:build
+      - checkout # check out the code in the project directory
+      - run: echo "hello world" # run the `echo` command

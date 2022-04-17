@@ -10,7 +10,7 @@
 		"prod": "tsc && node ./www/server.js",
 		"clean": "rm -rf www/ || true",
 		"build": "npm run clean && tsc && cp -rf src/config www/config && cp .npmrc www/.npmrc && cp package.json www/package.json && cd www && zip -r Archive.zip . && cd ..",
-		"test": "echo \"Error: no tests specified\" && exit 1",
+		"test": "echo \"Error: no test specified\" && exit 1",
 		"eb:deploy": "cd www && eb init youssefhanyapi --region us-east-1 --platform node.js && eb use youssefhanyapi-env && eb setenv POSTGRES_HOST=database-2.cxbch9hrjslr.us-east-1.rds.amazonaws.com POSTGRES_DB=postgres PORT=5432 POSTGRES_USERNAME=postgres POSTGRES_PASSWORD=password AWS_REGION=us-east-1 JWT_SECRET=secret AWS_BUCKET=elasticbeanstalk-us-east-1-052747577735 URL=localhost && eb deploy youssefhanyapi-env",
 		"deploy": "npm run build && npm run eb:deploy"
 	},

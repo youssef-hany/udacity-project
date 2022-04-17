@@ -7,7 +7,7 @@ jobs:
   build:
     working_directory: ~/udagram
     docker:
-      - image: circleci/node:10-browsers
+      - image: cimg/base:stable
     steps:
       - node/install
       - checkout
@@ -33,11 +33,6 @@ jobs:
           command: |
             npm run frontend:build
       - run:
-          # run angular tests
-          name: Front-End Test
-          command: |
-            npm run frontend:test
-      - run:
           # build backend
           name: Back-End Build
           command: |
@@ -47,3 +42,18 @@ jobs:
           name: Deploy Frontend
           command: |
             npm run frontend:deploy
+
+  test:
+     docker:
+      - image: circleci/node:10-browsers
+    - run:
+      # run angular tests
+      name: Front-End Test
+      command: |
+        npm run frontend:test
+workflows:
+  version: 1
+  build_and_test:
+    jobs:
+      - build
+      - test

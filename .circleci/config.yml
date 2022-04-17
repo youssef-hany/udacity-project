@@ -5,34 +5,45 @@ orbs:
   eb: circleci/aws-elastic-beanstalk@2.0.1
 jobs:
   build:
+    working_directory: ~/udagram
     docker:
-      - image: "cimg/base:stable"
+      - image: circleci/node:10-browsers
     steps:
       - node/install
       - checkout
       - aws-cli/setup
       - eb/setup
       - run:
+          # install frontend dependencies
           name: Front-End Install
           command: |
             npm run frontend:install
       - run:
+          # install backend dependencies
           name: Back-End Install
           command: |
             npm run backend:install
+       - run: 
+          #lint code
+          name: Linting
+          command: npm run lint
       - run:
+          # build frontend
           name: Front-End Build
           command: |
             npm run frontend:build
       - run:
+          # run angular tests
           name: Front-End Test
           command: |
             npm run frontend:test
       - run:
+          # build backend
           name: Back-End Build
           command: |
             npm run backend:build
       - run:
+          # deploy frontend to s3 bucket
           name: Deploy Frontend
           command: |
             npm run frontend:deploy

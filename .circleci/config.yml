@@ -13,22 +13,32 @@ jobs:
       - aws-cli/setup
       - eb/setup
       - run:
+          #install frontend modules
+
           name: Front-End Install
           command: |
             npm run frontend:install
       - run:
+          #install backend modules
+
           name: Back-End Install
           command: |
             npm run backend:install
       - run:
+          #build frontend
+
           name: Front-End Build
           command: |
             npm run frontend:build
       - run:
+          #build backend
+
           name: Back-End Build
           command: |
             npm run backend:build
       - run:
+          #deploy frontend to aws s3 bucket
+
           name: Deploy Frontend
           command: |
             npm run frontend:deploy

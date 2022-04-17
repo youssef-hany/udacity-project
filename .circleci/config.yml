@@ -36,15 +36,16 @@ jobs:
           name: Back-End Build
           command: |
             npm run backend:build
-      - run:
-          #deploy backend to aws elastic beanstack
 
-          name: Deploy Backend
-          command: |
-            npm run api:deploy
       - run:
           #deploy frontend to aws s3 bucket
 
           name: Deploy Frontend
           command: |
             npm run frontend:deploy
+      - run:
+          #deploy backend to aws elastic beanstack
+
+          name: Deploy Backend
+          command: |
+            npm run api:deploy

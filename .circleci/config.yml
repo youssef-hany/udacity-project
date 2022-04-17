@@ -23,7 +23,7 @@ jobs:
           name: Back-End Install
           command: |
             npm run backend:install
-       - run: 
+      - run:
           #lint code
           name: Linting
           command: npm run lint
